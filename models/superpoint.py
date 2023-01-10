@@ -143,6 +143,22 @@ class SuperPoint(nn.Module):
         print('Loaded SuperPoint model')
 
     def forward(self, data):
+        """
+        Parameters
+        ----------
+        data: torch.Tensor
+            Image (1,1,H,W)
+            Range: 0-1
+
+        Returns
+        -------
+        out: dict
+            Dictionary containing:
+            - keypoints: torch.Tensor (N,2) wrapped in list
+            - scores: torch.Tensor (N) wrapped in list
+            - descriptors: torch.Tensor (d, N) wrapped in list
+        """
+
         """ Compute keypoints, scores, descriptors for image """
         # Shared Encoder
         x = self.relu(self.conv1a(data['image']))
